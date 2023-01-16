@@ -5,7 +5,9 @@
              x:Class="AppBurgerJEAI.Views.BurgerListPage"
              Title="JEAI_BurgerListPage">
     <Grid RowDefinitions="*,Auto">
-        <CollectionView x:Name="burgerList">
+        <CollectionView x:Name="burgerList"
+                        SelectionMode="Single"
+                        >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Burger">
                     <Grid>
