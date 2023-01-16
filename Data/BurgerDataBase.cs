@@ -9,7 +9,6 @@ namespace AppBurgerJEAI.Data
     {
         string _dbPath;
         private SQLiteConnection conn;
-        int x=0;
 
         public BurgerDataBase(string DataBasePath)
         {
