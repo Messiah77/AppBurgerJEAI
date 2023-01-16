@@ -4,12 +4,17 @@ using AppBurgerJEAI.Models;
 
 namespace AppBurgerJEAI.Views;
 
+[QueryProperty("Item", "Item")]
 public partial class BurgerItemPage : ContentPage
 {
-    Burger Item = new Burger();
+    //Burger Item = new Burger();
     bool _flag;
-
-
+   
+    public Burger Item
+    {
+        get => BindingContext as Burger;
+        set => BindingContext = value;
+    }
     public BurgerItemPage()
 	{
 		InitializeComponent();
@@ -17,9 +22,9 @@ public partial class BurgerItemPage : ContentPage
 
     private void OnSaveClicked(object sender, EventArgs e)
     {
-        Item.Name = nameB.Text;
-        Item.Description = descB.Text;
-        Item.WithExtraCheese = _flag;
+        //Item.Name = nameB.Text;
+        //Item.Description = descB.Text;
+        //Item.WithExtraCheese = _flag;
         App.BurgerRepo.AddNewBurger(Item);
         Shell.Current.GoToAsync("..");
     }
