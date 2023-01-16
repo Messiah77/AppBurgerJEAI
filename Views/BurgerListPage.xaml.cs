@@ -24,9 +24,9 @@ public partial class BurgerListPage : ContentPage
         burgerList.ItemsSource = burger;
     }
 
-    async void OnItemAdded(object sender, EventArgs e)
+    public void OnItemAdded(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(BurgerItemPage));
+         Shell.Current.GoToAsync(nameof(BurgerItemPage));
         base.OnAppearing();
     }
 }
