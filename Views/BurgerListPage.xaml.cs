@@ -1,4 +1,6 @@
 namespace AppBurgerJEAI.Views;
+
+using AppBurgerJEAI.Data;
 using AppBurgerJEAI.Models;
 
 public partial class BurgerListPage : ContentPage
@@ -9,7 +11,7 @@ public partial class BurgerListPage : ContentPage
         LoadData();
         List<Burger> burger = App.BurgerRepo.GetAllBurgers();
         burgerList.ItemsSource = burger;
-        BindingContext = this;
+        BindingContext=this;
     }
 
     protected override void OnAppearing()
@@ -32,5 +34,15 @@ public partial class BurgerListPage : ContentPage
             ["Item"] = new Burger()
         });
         base.OnAppearing();
+    }
+
+    public void OnSelected(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync(nameof(BurgerItemPage), true, new Dictionary<string, object>
+        {
+            ["Item"] = Burger ()
+        });
+        base.OnAppearing();
+
     }
 }
