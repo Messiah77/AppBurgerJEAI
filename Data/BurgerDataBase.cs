@@ -41,5 +41,18 @@ namespace AppBurgerJEAI.Data
             List<Burger> burgers = conn.Table<Burger>().ToList();
             return burgers;
         }
+
+        public int DeleteItem(Burger item)
+        {
+            Init();
+            return conn.Delete(item);
+        }
+
+        public int  UpdateUser(Burger item)
+        {
+            int result = 0;
+            result = conn.Update(item);
+            return result;
+        }
     }
 }
