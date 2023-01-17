@@ -36,13 +36,32 @@ public partial class BurgerListPage : ContentPage
         base.OnAppearing();
     }
 
-    public void OnSelected(object sender, EventArgs e)
+    private async void burguersCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(BurgerItemPage), true, new Dictionary<string, object>
+        if (e.CurrentSelection.Count != 0)
         {
-            ["Item"] = Burger ()
-        });
-        base.OnAppearing();
+            var burguer = (Models.Burger)e.CurrentSelection[0];
 
+            string action = await DisplayActionSheet("Seleccione la acción que desea realizar:", "Cancel", null, "Editar", "Borrar");
+
+            if (action == "Editar")
+            {
+                await Shell.Current.GoToAsync($"{nameof(BurgerItemPage)}?{nameof(BurgerItemPage.ABItemId)}={Burger.Id}");
+            }
+            else if (action == "Borrar")
+            {
+                App.BurgerRepo.DeleteBurguer(Burger);
+                LoadData();
+            }
+            else
+            {
+                LoadData();
+            }
+
+            ABburguerList.SelectedItem = null;
+        }
     }
+
+
+
 }

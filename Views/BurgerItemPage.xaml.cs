@@ -19,13 +19,25 @@ public partial class BurgerItemPage : ContentPage
 	{
 		InitializeComponent();
 	}
-
+    public int ItemId
+    {
+        set { LoadBurger(value); }
+    }
     private void OnSaveClicked(object sender, EventArgs e)
     {
         //Item.Name = nameB.Text;
         //Item.Description = descB.Text;
         //Item.WithExtraCheese = _flag;
-        App.BurgerRepo.AddNewBurger(Item);
+
+        if (SaveButton.Text == "Editar")
+        {
+            App.BurgerRepo.UpdateUser(Item);
+        }
+        else
+        {
+            App.BurgerRepo.AddNewBurger(Item);
+        }
+
         Shell.Current.GoToAsync("..");
     }
 
@@ -38,5 +50,15 @@ public partial class BurgerItemPage : ContentPage
     {
         _flag = e.Value;
     }
+    public void LoadBurguer(int value = -1)
+    {
+        if (value > -1)
+        {
+            Item = App.BurgerRepo.GetBurguer(value);
+            SaveButton.Text = "Editar";
+        }
 
+        BindingContext = Item;
+
+    }
 }
